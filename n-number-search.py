@@ -1,9 +1,9 @@
-import bs4, requests
+import bs4, requests  #import BeautifulSoup4 for HTML parsing and requests for HTML request
 
-url = 'http://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?nNumberTxt='
-nnumber = ''
+url = 'http://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?nNumberTxt='  #FAA registry website
+nnumber = ''  #variable to hold n-number
 
-nnumber = input('Please enter tail number: ')
+nnumber = input('Please enter tail number: ') #get input
 
 res = requests.get(url+nnumber)
 
