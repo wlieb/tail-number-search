@@ -40,7 +40,7 @@ def get_tail_number(nnumber):
   model = data.select('#content_Label7')
   owner = data.select('#content_lbOwnerName')
 
-  message = 'Owner: ' + owner[0].getText() + '\nManufacturer: ' + mfr[0].getText() + '\nModel: ' + model[0].getText()
+  message = '\nOwner: ' + owner[0].getText() + '\nManufacturer: ' + mfr[0].getText() + '\nModel: ' + model[0].getText()
 
   return message
 
