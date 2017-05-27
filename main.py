@@ -1,5 +1,5 @@
 from flask import Flask, request
-from twilio import twiml
+from twilio.twiml.messaging_response import MessagingResponse
 import bs4, requests
 
 app = Flask(__name__)
@@ -9,13 +9,12 @@ def sms():
   # Get the text in the message sent
     message_body = request.form['Body']
     
-    # Create a Twilio response object to be able to send a reply back (as per         # Twilio docs)
-    resp = twiml.Response()
-    
     # Send the message body to the getReply message, where 
-    # we will query the String and formulate a response
+    # # we will query the String and formulate a response
     replyText = get_tail_number(message_body)
 
+  # Create a Twilio response object to be able to send a reply back (as per         # Twilio docs)
+    resp = MessagingResponse()
 	# Text back our response!
     resp.message(replyText)
     return str(resp)
