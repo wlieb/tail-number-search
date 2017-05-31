@@ -61,7 +61,7 @@ def get_wiki(query):
   try:
     search_result = wikipedia.summary(query)
   except wikipedia.exceptions.DisambiguationError as e:
-    message = ''
+    message = '\n'
     for option in e.options:
       message = message + option + '\n'
     return message
