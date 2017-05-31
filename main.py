@@ -9,16 +9,18 @@ app = Flask(__name__)
 def sms():
   # Get the text in the message sent
   message_body = request.form['Body']
+
+  upperbody = message_body.upper()  
     #parse message body
 
-   # if message_body[0] == 'N':
-  replyText = get_tail_number(message_body)
+  if message_body[0] == 'N':
+    replyText = get_tail_number(message_body)
 
-    #elif message_body[:4] == 'WIKI':
-     # replyText = get_wiki(message_body)
+  elif message_body[:4] == 'WIKI':
+    replyText = get_wiki(message_body)
 
-   # else:
-    #  replyText = 'Error: Command not Recognized'
+  else:
+    replyText = 'Error: Command not Recognized'
 
     # Send the message body to the getReply message, where 
     # # we will query the String and formulate a response
@@ -54,7 +56,8 @@ def get_tail_number(nnumber):
 
   return message
 
-#def get_wiki(query):
+def get_wiki(query):
+  return query
 
  # search_text = query[5:]
 
