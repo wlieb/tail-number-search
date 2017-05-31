@@ -8,12 +8,13 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def sms():
   # Get the text in the message sent
-    message_body = request.form['Body']
-    message_body = message_body.upper
+    #message_body = request.form['Body']
+  message_body = request.values.POST['Body']
+    #message_body = message_body.upper
     #parse message body
 
    # if message_body[0] == 'N':
-   replyText = get_tail_number(message_body)
+  replyText = get_tail_number(message_body)
 
     #elif message_body[:4] == 'WIKI':
      # replyText = get_wiki(message_body)
@@ -25,11 +26,10 @@ def sms():
     # # we will query the String and formulate a response
 
   # Create a Twilio response object to be able to send a reply back (as per         # Twilio docs)
-    resp = twiml.Response()
-    # resp = MessagingResponse()
+  resp = MessagingResponse()
 	# Text back our response!
-    resp.message(replyText)
-    return str(resp)
+  resp.message(replyText)
+  return str(resp)
 
 def get_tail_number(nnumber):
 
