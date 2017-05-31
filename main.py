@@ -8,9 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def sms():
   # Get the text in the message sent
-    #message_body = request.form['Body']
-  message_body = request.values.POST['Body']
-    #message_body = message_body.upper
+  message_body = request.form['Body']
     #parse message body
 
    # if message_body[0] == 'N':
@@ -56,24 +54,24 @@ def get_tail_number(nnumber):
 
   return message
 
-def get_wiki(query):
+#def get_wiki(query):
 
-  search_text = query[5:]
+ # search_text = query[5:]
 
-  try:
-    search_result = wikipedia.summary(search_text)
-  except wikipedia.exceptions.DisambiguationError as e:
-    return e.options
+  #try:
+   # search_result = wikipedia.summary(search_text)
+  #except wikipedia.exceptions.DisambiguationError as e:
+   # return e.options
 
-  message = wikipedia.summary(search_text)
+ # message = wikipedia.summary(search_text)
 
-  if len(message) > 1600:
-    a = len(message)
-    for parsed in a(1600):
-      return parsed
+  #if len(message) > 1600:
+   # a = len(message)
+    #for parsed in a(1600):
+     # return parsed
   
-  else:
-    return message
+  #else:
+   # return message
 
 if __name__ == '__main__':
   app.run()
