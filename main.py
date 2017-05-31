@@ -13,11 +13,11 @@ def sms():
   upperbody = message_body.upper()  
     #parse message body
 
-  if message_body[0] == 'N':
+  if upperbody[0] == 'N':
     replyText = get_tail_number(message_body)
 
-  elif message_body[:4] == 'WIKI':
-    replyText = get_wiki(message_body)
+  elif upperbody[:4] == 'WIKI':
+    replyText = get_wiki(message_body[5:])
 
   else:
     replyText = 'Error: Command not Recognized'
