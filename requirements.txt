@@ -2,3 +2,4 @@ Flask==0.12.2
 beautifulsoup4==4.6.0
 requests==2.14.2
 twilio==6.3.0
+wikipedia==1.4.0

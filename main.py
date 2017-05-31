@@ -1,6 +1,7 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 import bs4, requests
+import wikipedia
 
 app = Flask(__name__)
 
@@ -9,9 +10,16 @@ def sms():
   # Get the text in the message sent
     message_body = request.form['Body']
     
+    #parse message body
+
+    if message_body.upper[0] == 'N':
+      replyText = get_tail_number(message_body)
+
+    elif message_body.upper[:3] == 'WIKI':
+      replyText = get_wiki(message_body)
+
     # Send the message body to the getReply message, where 
     # # we will query the String and formulate a response
-    replyText = get_tail_number(message_body)
 
   # Create a Twilio response object to be able to send a reply back (as per         # Twilio docs)
     resp = MessagingResponse()
@@ -43,6 +51,25 @@ def get_tail_number(nnumber):
   message = '\nOwner: ' + owner[0].getText() + '\nManufacturer: ' + mfr[0].getText() + '\nModel: ' + model[0].getText()
 
   return message
+
+def get_wiki(query):
+
+  search_text = query[5:]
+
+  try:
+    search_result = wikipedia.summary(search_text)
+  except wikipedia.exceptions.DisambiguationError as e:
+    return e.options
+
+  message = wikipedia.summary(search_text)
+
+  if len(message) > 1600:
+    a = len(message)
+    for parsed in a(1600):
+      return parsed
+  
+  else:
+    return message
 
 if __name__ == '__main__':
   app.run()
