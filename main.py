@@ -57,7 +57,9 @@ def get_tail_number(nnumber):
   return message
 
 def get_wiki(query):
-    
+  
+  query = str(query)
+
   try:
     search_result = wikipedia.summary(query)
   except wikipedia.exceptions.DisambiguationError as e:
