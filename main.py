@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def sms():
   # Get the text in the message sent
-    message_body = str(request.form['Body'])
+    message_body = request.form['Body']
     message_body = message_body.upper
     #parse message body
 
@@ -17,6 +17,9 @@ def sms():
 
     elif message_body[:4] == 'WIKI':
       replyText = get_wiki(message_body)
+
+    else:
+      replyText = 'Error: Command not Recognized'
 
     # Send the message body to the getReply message, where 
     # # we will query the String and formulate a response
