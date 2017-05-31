@@ -25,7 +25,8 @@ def sms():
     # # we will query the String and formulate a response
 
   # Create a Twilio response object to be able to send a reply back (as per         # Twilio docs)
-    resp = MessagingResponse()
+    resp = twiml.Response()
+    # resp = MessagingResponse()
 	# Text back our response!
     resp.message(replyText)
     return str(resp)
