@@ -57,24 +57,21 @@ def get_tail_number(nnumber):
   return message
 
 def get_wiki(query):
-  return query
+  #return query
 
- # search_text = query[5:]
+ search_text = query[5:]
 
-  #try:
-   # search_result = wikipedia.summary(search_text)
-  #except wikipedia.exceptions.DisambiguationError as e:
-   # return e.options
+ try:
+   search_result = wikipedia.summary(search_text)
+ except wikipedia.exceptions.DisambiguationError as e:
+   return e.options
 
- # message = wikipedia.summary(search_text)
+ message = wikipedia.summary(search_text)
 
-  #if len(message) > 1600:
-   # a = len(message)
-    #for parsed in a(1600):
-     # return parsed
-  
-  #else:
-   # return message
+  if len(message) > 1600:
+    message = message[:1550] + '...'
+  else:
+    return message
 
 if __name__ == '__main__':
   app.run()
