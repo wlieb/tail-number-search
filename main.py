@@ -61,9 +61,9 @@ def get_wiki(query):
   try:
     search_result = wikipedia.summary(query)
   except wikipedia.exceptions.DisambiguationError as e:
-    message = '\n'
+    message = ''
     for option in e.options:
-      message = message + option + '\n'
+      message = '\n' + message + option
     return message
   except wikipedia.exceptions.PageError as e:
     return e
@@ -71,7 +71,8 @@ def get_wiki(query):
   message = wikipedia.summary(query)
   
   if len(message) > 1600:
-    message = message[:1550] + '...'
+    message = message[:1500] + '...'
+    return message
   else:
     return message
 
