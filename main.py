@@ -65,6 +65,8 @@ def get_wiki(query):
     for option in e.options:
       message = message + option + '\n'
     return message
+  except wikipedia.exceptions.PageError as e:
+    return e
     
   message = wikipedia.summary(query)
   
