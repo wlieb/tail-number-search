@@ -20,7 +20,7 @@ def sms():
     replyText = get_wiki(message_body[5:])
 
   else:
-    replyText = 'Error: Command not Recognized'
+    replyText = 'Error: Command not Recognized.  Please start with \'Wiki\' or \'N\''
 
     # Send the message body to the getReply message, where 
     # # we will query the String and formulate a response
@@ -52,7 +52,7 @@ def get_tail_number(nnumber):
   model = data.select('#content_Label7')
   owner = data.select('#content_lbOwnerName')
 
-  message = '\nOwner: ' + owner[0].getText() + '\nManufacturer: ' + mfr[0].getText() + '\nModel: ' + model[0].getText()
+  message = '\rOwner: ' + owner[0].getText() + '\rManufacturer: ' + mfr[0].getText() + '\rModel: ' + model[0].getText()
 
   return message
 
@@ -63,7 +63,7 @@ def get_wiki(query):
   except wikipedia.exceptions.DisambiguationError as e:
     message = ''
     for option in e.options:
-      message = '\n' + message + option
+      message = '\r' + message + option
     return message
   except wikipedia.exceptions.PageError as e:
     return e
@@ -71,7 +71,7 @@ def get_wiki(query):
   message = wikipedia.summary(query)
   
   if len(message) > 1600:
-    message = message[:1500] + '...'
+    message = '\r' & message[:1500] + '...'
     return message
   else:
     return message
